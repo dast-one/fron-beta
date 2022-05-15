@@ -8,7 +8,13 @@ import HelloWorld from '@/components/HelloWorld.vue'
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
 
     <div class="wrapper">
-      <HelloWorld msg="Dear <script>HA_X();'!<" />
+      <HelloWorld msg="Мои продукты" />
+
+      <nav>
+        <div v-for="item of items" :key="item.id">
+          {{ item.generated_ts }}
+        </div>
+      </nav>
 
       <nav>
         <RouterLink to="/">Scan request " Home</RouterLink>
@@ -19,6 +25,26 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
   <RouterView />
 </template>
+
+<script>
+import axios from "axios"
+export default {
+  name: "App",
+  data() {
+    return {
+      items: [],
+    };
+  },
+  async created() {
+    try {
+      const res = await axios.get(`http://localhost:8000/reports/`);
+      this.items = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+}
+</script>
 
 <style>
 @import '@/assets/base.css';
