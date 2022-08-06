@@ -36,7 +36,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get('http://localhost:8000/reports/' + this.$route.params.report_id + '/alerts/');
+      const res = await axios.get('/reports/' + this.$route.params.report_id + '/alerts/');
       this.alerts = res.data;
     } catch (error) {
       console.log(error);

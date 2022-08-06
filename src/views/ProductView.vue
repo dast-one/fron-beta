@@ -33,7 +33,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(`http://localhost:8000/reports/`);
+      const res = await axios.get(`/reports/`);
       this.reports = res.data;
     } catch (error) {
       console.log(error);
