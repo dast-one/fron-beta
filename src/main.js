@@ -8,6 +8,13 @@ if (import.meta.env.VITE_HACK_USER) {
     axios.defaults.headers = {'X-Forwarded-User': import.meta.env.VITE_HACK_USER}
 }
 
+// // https://github.com/vitejs/vite/issues/6695#issuecomment-1069522995
+// if (import.meta.hot) {
+//     import.meta.hot.on('vite:beforeFullReload', () => {
+//         throw '(skipping full reload)';
+//     });
+// }
+
 const app = createApp(App)
 
 app.use(router)
