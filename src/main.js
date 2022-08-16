@@ -5,7 +5,7 @@ import router from './router'
 import axios from "axios"
 axios.defaults.baseURL = import.meta.env.VITE_API_ENDPOINT
 if (import.meta.env.VITE_HACK_USER) {
-    axios.defaults.headers = {'X-Forwarded-User': import.meta.env.VITE_HACK_USER}
+    axios.defaults.headers = {'X-Email': import.meta.env.VITE_HACK_USER}
 }
 
 // // https://github.com/vitejs/vite/issues/6695#issuecomment-1069522995
