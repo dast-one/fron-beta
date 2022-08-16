@@ -5,7 +5,7 @@ import EcosystemIcon from './icons/IconEcosystem.vue'
 
 <template>
 
-  <br><h2>Мои продукты</h2><br>
+  <h2>Мои продукты</h2>
 
   <ProductItem v-for="product of products" :key="product.id">
 
