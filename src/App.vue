@@ -6,11 +6,11 @@ import HelloWorld from '@/components/HelloWorld.vue'
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg="Мои продукты" />
+      <HelloWorld msg1="ASC" msg2="Operation" />
 
       <nav>
-        <RouterLink to="/">Scan request " Home</RouterLink>
-        <RouterLink to="/product">My Product</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+        <!-- <RouterLink to="/product">My Product</RouterLink> -->
         <RouterLink to="/about">D1 " About</RouterLink>
       </nav>
     </div>

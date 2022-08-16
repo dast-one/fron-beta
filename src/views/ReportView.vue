@@ -1,8 +1,6 @@
 <!-- Report view: info/evidences, alerts -->
 
 <script setup>
-// import TheWelcome from '@/components/TheWelcome.vue'
-import ScanRequest from '@/components/ScanRequest.vue'
 import Alert from '@/components/Alert.vue'
 </script>
 
@@ -13,11 +11,12 @@ import Alert from '@/components/Alert.vue'
 
     <div v-for="alert of alerts" :key="alert.id">
       <br><hr>
-      <p> <sup>(:{{alert.id}})</sup> {{ alert.description }} </p>
-      <p style="font-size: 60%"> @ {{ alert.method }} {{ alert.uri }} </p>
-      <p style="font-size: 80%"> {{ alert.solution }} </p>
-      <p style="font-size: 80%"> {{ alert.otherinfo }} </p>
-      <p style="font-size: 80%"> {{ alert.reference }} </p>
+      <sup>(:{{alert.id}})</sup>
+      <span v-html="alert.description"/>
+      <code style="font-size: 80%"> @ {{ alert.method }} {{ alert.uri }} </code>
+      <p style="font-size: 80%" v-html="alert.solution" />
+      <p style="font-size: 80%" v-html="alert.otherinfo" />
+      <p style="font-size: 80%" v-html="alert.reference" />
       <!-- <RouterLink :to="{ name: 'alert', params: { alert_id: alert.id }}">
         {{ alert.generated_ts }} </RouterLink> -->
     </div>

@@ -1,8 +1,7 @@
 <!-- Product view: summary, reports, scanrequest -->
 
 <script setup>
-// import TheWelcome from '@/components/TheWelcome.vue'
-import ScanRequest from '@/components/ScanRequest.vue'
+// import ScanRequest from '@/components/ScanRequest.vue'
 import Report from '@/components/Report.vue'
 </script>
 
@@ -15,7 +14,6 @@ import Report from '@/components/Report.vue'
       <sup>(:{{report.id}})</sup>
       <RouterLink :to="{ name: 'report', params: { report_id: report.id }}">
         {{ report.generated_ts }} </RouterLink>
-      <span style="font-size: 60%"> {{ report_id }} </span>
     </li></ol>
 
     <!-- ReportZZZZ -->
