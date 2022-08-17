@@ -62,17 +62,14 @@ export default {
   data() {
     return {
       product: {},
-      // reports: [],
       report_groups: [],
     };
   },
   async created() {
     try {
-      const res1 = await axios.get('/products/' + this.$route.params.product_id);
+      const res1 = await axios.get(`/products/${this.$route.params.product_id}/`);
       this.product = res1.data;
-      // const res2 = await axios.get('/products/' + this.$route.params.product_id + '/reports/', {params: {'flat':true}});
-      // this.reports = res2.data;
-      const res2 = await axios.get('/products/' + this.$route.params.product_id + '/reports/');
+      const res2 = await axios.get(`/products/${this.$route.params.product_id}/reports/`);
       this.report_groups = res2.data;
     } catch (error) {
       console.log(error);
@@ -80,19 +77,3 @@ export default {
   },
 }
 </script>
-<!-- <script>
-export default {
-  name: "App",
-  data() {
-    return {
-      users: [],
-    };
-  },
-  async mounted() {
-    const { data } = await this.axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    this.users = data;
-  },
-};
-</script> -->
