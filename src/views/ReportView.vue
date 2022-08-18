@@ -7,19 +7,34 @@ import Alert from '@/components/Alert.vue'
 <template>
   <main>
 
+    <h2 v-if="alerts.length"> Результаты тестирования </h2>
+
     <!-- info/evidences -->
 
-    <div v-for="alert of alerts" :key="alert.id">
+    <div v-for="alert of alerts">
+
       <br><hr>
-      <sup>(:{{alert.id}})</sup>
-      <span v-html="alert.description"/>
-      <code style="font-size: 80%"> @ {{ alert.method }} {{ alert.uri }} </code>
+      <h3 v-html="alert.name" />
+      <!-- <RouterLink :to="{ name: 'alert', params: { alert_id: alert.id }}">
+        {{ alert.generated_ts }} </RouterLink> -->
+      <p v-html="alert.description" />
+
+      <br>
+      <ul> <li v-for="ai of alert.instances" :key="ai.id">
+      <code style="font-size: 80%"> @ {{ ai.method }} {{ ai.uri }} </code>
+      <!-- <code v-if="ai.attack" style="font-size: 80%"> {{ai.attack}} </code> -->
+      <!-- <code v-if="ai.evidence" style="font-size: 80%"> {{ai.evidence}} </code> -->
+      </li> </ul>
+
+      <br>
       <p style="font-size: 80%" v-html="alert.solution" />
       <p style="font-size: 80%" v-html="alert.otherinfo" />
       <p style="font-size: 80%" v-html="alert.reference" />
-      <!-- <RouterLink :to="{ name: 'alert', params: { alert_id: alert.id }}">
-        {{ alert.generated_ts }} </RouterLink> -->
+
+
     </div>
+
+    <br><br> <!-- TODO style this with css instead -->
 
   </main>
 </template>
