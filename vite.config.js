@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/',
 
   // when behind reverse proxy
   // https://vitejs.dev/config/server-options.html#server-hmr
