@@ -12,22 +12,13 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-    // {
-    //   path: '/product/:product_id',
-    //   name: 'product',
-    //   component: ProductView
-    // },
-    // {
-    //   path: '/product/:product_id/report/:report_id',
-    //   name: 'report',
-    //   component: ReportView
-    // },
     {
-      path: '/product',
+      path: '/product/:product_id',
       name: 'product',
       component: ProductView
     },
     {
+      // path: '/product/:product_id/report/:report_id',
       path: '/report/:report_id',
       name: 'report',
       component: ReportView

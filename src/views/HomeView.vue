@@ -1,10 +1,9 @@
 <script setup>
-import TheWelcome from '@/components/TheWelcome.vue'
-// import ScanRequest from '@/components/ScanRequest.vue'
+import ProductsOverview from '@/components/ProductsOverview.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <ProductsOverview />
   </main>
 </template>
