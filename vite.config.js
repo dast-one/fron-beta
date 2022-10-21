@@ -5,11 +5,23 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // https://vitejs.dev/config/shared-options.html
+  // Should start and end with the / character.
   // base: '/',
 
-  // when behind reverse proxy
-  // https://vitejs.dev/config/server-options.html#server-hmr
+  // https://vitejs.dev/config/server-options.html
   server: {
+    // boolean | CorsOptions; default: true
+    // for options object ref: https://github.com/expressjs/cors
+    cors: {
+      origin: true
+    },
+    // Type: OutgoingHttpHeaders
+    headers: {
+      'X-Frame-Options': 'SAMEORIGIN'
+    },
+    // when behind reverse proxy
+    // https://vitejs.dev/config/server-options.html#server-hmr
     hmr: {
       clientPort: 443
     }
