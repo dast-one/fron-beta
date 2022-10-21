@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h3> {{ msg1 }}&nbsp;<sup class="green" style="font-size: 110%">&beta;</sup>&nbsp;{{ msg2 }} </h3>
+    <h3> {{ msg1 }}&nbsp;<sup class="red" style="font-size: 110%">&beta;</sup>&nbsp;{{ msg2 }} </h3>
     <!-- <p>типа hello</p> -->
   </div>
 </template>

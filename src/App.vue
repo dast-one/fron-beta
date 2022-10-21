@@ -6,7 +6,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 <template>
   <header>
     <div class="wrapper">
-      <HelloWorld msg1="ASC" msg2="Operation" />
+      <HelloWorld msg1="DAST" msg2="Fuzzing" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -46,15 +46,17 @@ header {
 }
 
 a,
-.green {
+.red {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  /*color: hsla(160, 100%, 37%, 1);*/
+  color: hsla(347, 80%, 50%, 1);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    /*background-color: hsla(160, 100%, 37%, 0.2);*/
+    background-color: hsla(347, 80%, 50%, 0.2);
   }
 }
 
