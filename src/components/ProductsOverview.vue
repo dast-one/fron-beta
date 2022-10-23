@@ -1,13 +1,15 @@
 <script setup>
 import ProductItem from './ProductItem.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
+import Mark from './Mark.vue'
 </script>
 
 <template>
 
   <h2>Мои продукты</h2>
 
-  <ProductItem v-for="product of products" :key="product.id">
+  <ProductItem v-for="product of products" :key="product.id"
+    :class="{ inactive: product.status == 'delete' }">
 
     <template #icon>
       <EcosystemIcon />
@@ -15,8 +17,8 @@ import EcosystemIcon from './icons/IconEcosystem.vue'
 
     <template #heading>
       <RouterLink :to="{ name: 'product', params: { product_id: product.id }}">
-        <sup style="font-size: 60%"> :{{product.id}} </sup>
         {{ product.name }}
+        <Mark :n=product.id />
       </RouterLink>
     </template>
 
@@ -66,3 +68,9 @@ export default {
   },
 }
 </script>
+
+<style type="text/css">
+.inactive {
+  opacity: .5;
+}
+</style>
