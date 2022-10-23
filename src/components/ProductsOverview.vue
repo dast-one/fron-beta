@@ -12,7 +12,7 @@ import Mark from './Mark.vue'
     :class="{ inactive: product.status == 'delete' }">
 
     <template #icon>
-      <EcosystemIcon />
+      <EcosystemIcon :class="{ markactive: product.apps_count > 0 }" />
     </template>
 
     <template #heading>
@@ -23,6 +23,7 @@ import Mark from './Mark.vue'
     </template>
 
     <code style="font-size: 80%"> {{product.status}} {{product.product_type}} </code>
+    <p v-if="product.apps_count > 0" class="markactive"> {{product.apps_count}} экземпляр(ов) приложений </p>
     <p v-html="product.description" /> <!-- TODO avoid v-html -->
     <p v-if="product.contact_name | product.contact_email">
       Контакты: {{ product.contact_name }} {{ product.contact_email }}
@@ -69,8 +70,15 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style>
 .inactive {
   opacity: .5;
 }
+
+.markactive {
+  /*fill: red;*/
+  opacity: .8;
+  background-color: hsla(60, 100%, 80%, 0.5);
+}
+
 </style>

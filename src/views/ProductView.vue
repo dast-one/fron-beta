@@ -50,6 +50,7 @@ import Mark from '@/components/Mark.vue'
         <Mark :n=report.id />
         <RouterLink :to="{ name: 'report', params: { report_id: report.id }}">
           {{ report.generated_ts }} </RouterLink>
+        <span v-if="report.alert_uniq_count > 0"> *<sup style="font-size: xx-small;">{{report.alert_uniq_count}}</sup> </span>
       </li></ol>
 
     </div>
