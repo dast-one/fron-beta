@@ -34,12 +34,12 @@ import Mark from '@/components/Mark.vue'
     <!-- RouterLink to scan request -->
 
     <div v-for="rg of report_groups" :key="rg.app_id"
-      :class="{ inactive: rg.type == 'deleted' }">
+      :class="{ inactive: rg.type_ == 'deleted' }">
       
       <h3>
         <Mark :n=rg.app_id />
         {{ rg.title }}
-        <code style="font-size: small;"> {{rg.type}} </code>
+        <code style="font-size: small;"> {{rg.type_}} </code>
         <!-- RouterLink to scan request -->
       </h3>
       <p> {{rg.description}} </p>
