@@ -1,0 +1,9 @@
+# Exclude all the stuff
+*
+# except required
+!.env
+!*.js*
+!*.html
+!src
+!public
+!node_modules

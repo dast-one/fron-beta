@@ -13,7 +13,7 @@
 
     <h3> API Spec (Swagger/OpenAPI) </h3>
     <!-- <p> API SpecAPI SpecAPI SpecAPI SpecAPI SpecAPI Spec </p> -->
-    <input ref="file" v-on:change="handleFileUpload()" type="file">
+    <input ref="file" v-on:change="handleFileUpload($event)" type="file">
 
     <h3> Necessary headers </h3>
     <!-- <p> Headers Headers Headers Headers Headers Headers </p> -->
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  // import axios from "axios"
+  import axios from "axios"
 
   export default {
     name: "App",
@@ -61,15 +61,15 @@
           hdrs: '',
       };
     },
-
-    // async created() {
-    //   try {
-    //     const res = await axios.get(`/reports/${this.$route.params.report_id}/alerts/`);
-    //     this.alerts = res.data;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
+    methods: {
+      handleFileUpload(event){
+        let formData = new FormData();
+        formData.append('file', event.target.files[0]);
+        axios.post('/up/', formData,
+          // { headers: {'Content-Type': 'multipart/form-data'}, }
+        );
+      },
+    }
   }
 </script>
 
