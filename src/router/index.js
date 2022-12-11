@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ScanRequest from '../views/ScanRequest.vue'
 import ProductView from '../views/ProductView.vue'
 import ReportView from '../views/ReportView.vue'
 import NotFound from '../views/NotFound.vue'
@@ -11,6 +12,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/scanreq',
+      name: 'scanreq',
+      component: ScanRequest
     },
     {
       path: '/product/:product_id',

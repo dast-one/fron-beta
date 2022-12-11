@@ -5,9 +5,10 @@ FROM node:16-slim
 USER node
 
 WORKDIR /app
-EXPOSE 3000
-CMD ["npm", "run", "dev"]
 
 COPY --chown=node . /app
 RUN npm update
 
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

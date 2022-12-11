@@ -5,6 +5,7 @@
 import Report from '@/components/Report.vue'
 import ProductItem from '@/components/ProductItem.vue'
 import EcosystemIcon from '@/components/icons/IconEcosystem.vue'
+import Mark from '@/components/Mark.vue'
 </script>
 
 <template>
@@ -32,12 +33,13 @@ import EcosystemIcon from '@/components/icons/IconEcosystem.vue'
     <h2 v-if="report_groups.length"> Стенды и отчёты </h2>
     <!-- RouterLink to scan request -->
 
-    <div v-for="rg of report_groups" :key="rg.app_id">
+    <div v-for="rg of report_groups" :key="rg.app_id"
+      :class="{ inactive: rg.type_ == 'deleted' }">
       
       <h3>
-        <sup>(:{{rg.app_id}})</sup>
+        <Mark :n=rg.app_id />
         {{ rg.title }}
-        <code style="font-size: 80%"> {{rg.type}} </code>
+        <code style="font-size: small;"> {{rg.type_}} </code>
         <!-- RouterLink to scan request -->
       </h3>
       <p> {{rg.description}} </p>
@@ -45,9 +47,10 @@ import EcosystemIcon from '@/components/icons/IconEcosystem.vue'
       <br>
 
       <ol><li v-for="report of rg.dast_reports" :key="report.id">
-        <sup>(:{{report.id}})</sup>
+        <Mark :n=report.id />
         <RouterLink :to="{ name: 'report', params: { report_id: report.id }}">
           {{ report.generated_ts }} </RouterLink>
+        <span v-if="report.alert_uniq_count > 0"> *<sup style="font-size: xx-small;">{{report.alert_uniq_count}}</sup> </span>
       </li></ol>
 
     </div>
@@ -77,3 +80,9 @@ export default {
   },
 }
 </script>
+
+<style type="text/css">
+.inactive {
+  opacity: .5;
+}
+</style>
