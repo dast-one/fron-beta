@@ -1,6 +1,9 @@
 @import './base.css';
 
 @import '@coreui/coreui/dist/css/coreui.min.css';
+:root {
+  --cui-code-color: var(--cui-body-color);
+}
 
 #app {
   max-width: 1280px;
