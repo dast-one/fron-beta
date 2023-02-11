@@ -64,7 +64,10 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(`/reports/${this.$route.params.report_id}/alerts/`);
+      // const res = await axios.get(`/reports/${this.$route.params.report_id}/`);
+      const res = await axios.get(`/report/`, {params: {
+        report_id: this.$route.params.report_id
+      }});
       this.alerts = res.data;
     } catch (error) {
       console.log(error);

@@ -70,9 +70,13 @@ export default {
   },
   async created() {
     try {
-      const res1 = await axios.get(`/products/${this.$route.params.product_id}/`);
+      const res1 = await axios.get(`/product/`, {params: {
+        product_id: this.$route.params.product_id
+      }});
       this.product = res1.data;
-      const res2 = await axios.get(`/products/${this.$route.params.product_id}/reports/`);
+      const res2 = await axios.get(`/reports/`, {params: {
+        product_id: this.$route.params.product_id
+      }});
       this.report_groups = res2.data;
     } catch (error) {
       console.log(error);
