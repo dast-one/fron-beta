@@ -19,6 +19,9 @@ if (import.meta.env.VITE_HACK_USER) {
 
 const app = createApp(App)
 
+// https://vuejs.org/api/application.html#app-config-globalproperties
+app.config.globalProperties.APPDBG = !!import.meta.env.VITE_APPDBG
+
 app.use(router)
 
 app.mount('#app')

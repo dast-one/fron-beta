@@ -3,6 +3,29 @@
 @import '@coreui/coreui/dist/css/coreui.min.css';
 :root {
   --cui-code-color: var(--cui-body-color);
+  --cui-headings-font-weight: null;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 1.4rem;
+}
+h1 {
+  font-size: calc(.7rem + 1.5vw); /* base 2em  cui calc(1.375rem + 1.5vw) */
+}
+h2 {
+  font-size: calc(.7rem + .9vw); /* base 1.5em  cui calc(1.325rem + .9vw) */
+}
+h3 {
+  font-size: calc(.7rem + .6vw); /* base 1.2em  cui calc(1.3rem + .6vw) */
+}
+h4 {
+  font-size: calc(.7rem + .3vw); /* base =std  cui calc(1.275rem + .3vw) */
+}
+h5 {
+  font-size: calc(.8rem); /* base .83em  cui 1.25rem */
+}
+h6 {
+  font-size: calc(.7rem); /* base 0.67em  cui 1rem */
 }
 
 #app {
