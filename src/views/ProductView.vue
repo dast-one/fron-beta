@@ -37,20 +37,20 @@ import Mark from '@/components/Mark.vue'
       :class="{ inactive: rg.type_ == 'deleted' }">
       
       <h3>
-        <Mark :n=rg.app_id />
         {{ rg.title }}
         <code style="font-size: small;"> {{rg.type_}} </code>
+        <Mark :n=rg.app_id v-if="APPDBG" />
         <!-- RouterLink to scan request -->
       </h3>
-      <p> {{rg.description}} </p>
+      <p style="font-size: 80%"> {{rg.description}} </p>
 
-      <br>
+      <!-- <br> -->
 
       <ol><li v-for="report of rg.dast_reports" :key="report.id">
-        <Mark :n=report.id />
-        <RouterLink :to="{ name: 'report', params: { report_id: report.id }}">
+        <RouterLink :to="{ name: 'report', query: { report_id: report.id }}">
           {{ report.generated_ts }} </RouterLink>
         <span v-if="report.alert_uniq_count > 0"> *<sup style="font-size: xx-small;">{{report.alert_uniq_count}}</sup> </span>
+        <Mark :n=report.id v-if="APPDBG" />
       </li></ol>
 
     </div>
@@ -61,6 +61,7 @@ import Mark from '@/components/Mark.vue'
 <script>
 import axios from "axios"
 export default {
+  props: ['product_id'],
   name: "App",
   data() {
     return {
@@ -70,9 +71,15 @@ export default {
   },
   async created() {
     try {
-      const res1 = await axios.get(`/products/${this.$route.params.product_id}/`);
+      const res1 = await axios.get(`/product/`, {params: {
+        // product_id: this.$route.params.product_id
+        product_id: this.product_id
+      }});
       this.product = res1.data;
-      const res2 = await axios.get(`/products/${this.$route.params.product_id}/reports/`);
+      const res2 = await axios.get(`/reports/`, {params: {
+        // product_id: this.$route.params.product_id
+        product_id: this.product_id
+      }});
       this.report_groups = res2.data;
     } catch (error) {
       console.log(error);

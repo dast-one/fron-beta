@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -19,10 +19,8 @@ import HelloWorld from '@/components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style>
-@import '@/assets/base.css';
-
-h1, h2, h3 {
+<style scoped>
+/*h1, h2, h3 {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -33,7 +31,7 @@ h1, h2, h3 {
   padding: 2rem;
 
   font-weight: normal;
-}
+}*/
 
 header {
   line-height: 1.5;
@@ -45,20 +43,20 @@ header {
   margin: 0 auto 2rem;
 }
 
-a,
+/*a,
 .red {
   text-decoration: none;
-  /*color: hsla(160, 100%, 37%, 1);*/
+  /*color: hsla(160, 100%, 37%, 1);
   color: hsla(347, 80%, 50%, 1);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    /*background-color: hsla(160, 100%, 37%, 0.2);*/
+    /*background-color: hsla(160, 100%, 37%, 0.2);
     background-color: hsla(347, 80%, 50%, 0.2);
   }
-}
+}*/
 
 nav {
   width: 100%;
@@ -86,31 +84,20 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
   header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
 
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
   header .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   nav {

@@ -16,9 +16,9 @@ import Mark from './Mark.vue'
     </template>
 
     <template #heading>
-      <RouterLink :to="{ name: 'product', params: { product_id: product.id }}">
+      <RouterLink :to="{ name: 'product', query: { product_id: product.id }}">
         {{ product.name }}
-        <Mark :n=product.id />
+        <Mark :n=product.id v-if="APPDBG" />
       </RouterLink>
     </template>
 

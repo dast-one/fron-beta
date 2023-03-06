@@ -8,8 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <!-- <sup>(:{{ n }})</sup> -->
-    <sup>:{{ n }} </sup>
+    <sup> :{{ n }} </sup>
 </template>
 
 <style scoped>

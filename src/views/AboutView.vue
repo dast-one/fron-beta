@@ -5,8 +5,18 @@
     <div>
       <h2>DAST #ONE</h2>
       <br><hr><br>
-      <h3>Something fuzzy and dynamic is coming.</h3>
-      <p>
+
+<p> Динамическому тестированию (DAST, Fuzzing) подвергается развёрнутый экземпляр приложения (web-приложение, API). Для тестирования единичного сервиса требуется: </p>
+<ol>
+  <li> точка входа, URL (+список исключений, которые не следует сканировать, например, url смежных сервисов, logout-paths); </li>
+  <li> учётная запись, auth-токен, заголовок (либо алгоритм получения соотв. токена/заголовка/cookie); </li>
+  <li> если объект исследования - API, то нужна его спецификация в машиночитаемом виде (swagger/openapi); </li>
+</ol>
+<p> и главное -- понимание, что негативное тестирование предполагает заведомо невалидную нагрузку на сервисы. Ровно поэтому рекомендуем подвергать тестированию только "staging"-компоненты. </p>
+
+      <br><hr><br>
+      <!-- <h3>Something fuzzy and dynamic is coming.</h3> -->
+      <p style="font-size: 80%;">
         <span class="blur1"> Something fuzzy and dynamic is </span>
         <span class="blur2"> coming. Somethi/g fuzynaming. </span>
         <span class="blur3"> Something fuzzy and ﷺdyis coming. </span>
@@ -15,7 +25,7 @@
         <span class="blur6"> dynami⁠c �������is 󠁫coming. </span>
         <span class="blur7"> �g�in󠠀�g�in򠠠����g�in󠠀�g�i󠀢n </span>
       </p>
-      <p class="blur1" style="margin-top: .5em;"> – as it `radamsa` says </p>
+      <p class="blur1" style="font-size: 80%; margin-top: .5em;"> – as it `radamsa` says </p>
     </div>
 
   </div>
