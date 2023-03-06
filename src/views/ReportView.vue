@@ -67,6 +67,7 @@ import { CBadge } from '@coreui/vue'
 <script>
 import axios from "axios"
 export default {
+  props: ['report_id'],
   name: "App",
   data() {
     return {
@@ -75,9 +76,9 @@ export default {
   },
   async created() {
     try {
-      // const res = await axios.get(`/reports/${this.$route.params.report_id}/`);
       const res = await axios.get(`/report/`, {params: {
-        report_id: this.$route.params.report_id
+        // report_id: this.$route.params.report_id
+        report_id: this.report_id
       }});
       this.alerts = res.data;
     } catch (error) {

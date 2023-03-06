@@ -19,15 +19,19 @@ const router = createRouter({
       component: ScanRequest
     },
     {
-      path: '/product/:product_id',
+      // path: '/product/:product_id',
+      path: '/product',
       name: 'product',
-      component: ProductView
+      component: ProductView,
+      props: route => ({ product_id: route.query.product_id })
     },
     {
       // path: '/product/:product_id/report/:report_id',
-      path: '/report/:report_id',
+      // path: '/report/:report_id',
+      path: '/report',
       name: 'report',
-      component: ReportView
+      component: ReportView,
+      props: route => ({ report_id: route.query.report_id })
     },
     {
       path: '/about',
