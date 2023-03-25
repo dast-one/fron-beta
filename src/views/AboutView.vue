@@ -1,20 +1,68 @@
+<script setup>
+import {
+  CCol, CRow,
+  // CCallout,
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCardImage,
+  CCardText,
+  CCardTitle, CCardSubtitle,
+  CImage,
+} from '@coreui/vue'
+</script>
+
 <template>
   <div class="about">
     <!-- <h1>This is an about page</h1> -->
 
     <div>
-      <h2>DAST #ONE</h2>
+      <!-- <h2>DAST #ONE</h2> -->
+      <CRow class="g-0">
+        <CCol :md="4">
+          <!-- https://www.maxpixel.net/Rabbit-Easter-Bunny-Cute-Hare-Cartoon-Easter-6141260
+          License use Creative Commons Zero - CC0. A referral link to Max Pixel (not required). -->
+          <CImage align="center" rounded src="src/assets/rabbit6141260m.png" height="120" />
+        </CCol>
+        <CCol :md="8">
+            <h2> DAST #ONE </h2>
+            <small> <em> Распушите то, что написал ваш кролик </em> </small>
+            <p class="text-muted" style="font-size: small;">
+              <span style="font-size: smaller;"> пер. Google Translate, оригинал: </span>
+              <br>
+              <em>"Fuzz the stuff your bunny wrote"</em> &mdash; dast.one
+            </p>
+        </CCol>
+      </CRow>
+
       <br><hr><br>
 
-<p> Динамическому тестированию (DAST, Fuzzing) подвергается развёрнутый экземпляр приложения (web-приложение, API). Для тестирования единичного сервиса требуется: </p>
-<ol>
-  <li> точка входа, URL (+список исключений, которые не следует сканировать, например, url смежных сервисов, logout-paths); </li>
-  <li> учётная запись, auth-токен, заголовок (либо алгоритм получения соотв. токена/заголовка/cookie); </li>
-  <li> если объект исследования - API, то нужна его спецификация в машиночитаемом виде (swagger/openapi); </li>
-</ol>
-<p> и главное -- понимание, что негативное тестирование предполагает заведомо невалидную нагрузку на сервисы. Ровно поэтому рекомендуем подвергать тестированию только "staging"-компоненты. </p>
+      <p> Динамическому тестированию (DAST, Fuzzing) подвергается развёрнутый экземпляр приложения (web-приложение, API). </p>
+      <p> Для тестирования единичного сервиса требуется: </p>
+      <ol>
+        <li>
+          точка входа, URL
+          <p class="small text-muted">
+            +список исключений, которые не следует сканировать, например, url смежных сервисов, logout-paths;
+          </p>
+        </li>
+        <li>
+          учётная запись, auth-токен, заголовок
+          <p class="small text-muted">
+            либо алгоритм получения соотв. токена/заголовка/cookie;
+          </p>
+        </li>
+        <li>
+          API-спецификация
+          <p class="small text-muted">
+            если объект исследования - API, то нужна его спецификация в машиночитаемом виде (Swagger/OpenAPI), в крайнем случае хотя бы примеры вызовов;
+          </p>
+        </li>
+      </ol>
+      <p> и главное &mdash; понимание, что негативное тестирование предполагает заведомо невалидную нагрузку на сервисы. Ровно поэтому рекомендуем подвергать тестированию только "staging"-компоненты. </p>
 
       <br><hr><br>
+      
       <!-- <h3>Something fuzzy and dynamic is coming.</h3> -->
       <p style="font-size: 80%;">
         <span class="blur1"> Something fuzzy and dynamic is </span>
