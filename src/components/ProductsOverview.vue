@@ -61,7 +61,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(`/products/`);
+      const res = await axios.get(`/products`);
       this.products = res.data;
     } catch (error) {
       console.log(error);

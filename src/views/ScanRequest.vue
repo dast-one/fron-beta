@@ -65,7 +65,7 @@
       handleFileUpload(event){
         let formData = new FormData();
         formData.append('file', event.target.files[0]);
-        axios.post('/up/', formData,
+        axios.post('/up', formData,
           // { headers: {'Content-Type': 'multipart/form-data'}, }
         );
       },
