@@ -32,4 +32,8 @@ import {
 pre {
   font-size: x-small;
 }
+.card-footer {
+  max-height: 333px;
+  overflow: auto;
+}
 </style>
