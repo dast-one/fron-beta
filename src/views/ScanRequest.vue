@@ -2,39 +2,55 @@
 
 <script setup>
 // import Alert from '@/components/Alert.vue'
+import {
+  CButton,
+} from '@coreui/vue'
 </script>
 
 <template>
   <main>
 
     <h3> Base URL </h3>
-    <!-- <p> Base URLBase URLBase URLBase URLBase URLBase URL </p> -->
     <input v-model="burl" placeholder="http[s]://..." />
+    <p class="small text-muted">
+      Пожалуйста, всегда указывайте схему (протокол) и полное имя DNS.
+      <br>
+      Если предполагается API Fuzzing, убедитесь, что Base URL согласуется с путями endpoint'ов в спецификации.
+    </p>
 
     <h3> API Spec (Swagger/OpenAPI) </h3>
-    <!-- <p> API SpecAPI SpecAPI SpecAPI SpecAPI SpecAPI Spec </p> -->
+    <CButton color="dark" variant="ghost" size="sm"
+             v-if="!!oas"
+             @click="this.$refs.file.value = null; oas = null;"
+    > clear </CButton>
     <input ref="file" v-on:change="handleFileUpload($event)" type="file">
+    <p class="small text-muted">
+      Если собираемся Fuzz-ить API, загрузите сюда его спецификацию.
+      <br>
+      Если спецификация API не прикреплена, то считаем, что в Base URL указано web-приложение, которое подлежит DAST-сканированию.
+    </p>
 
     <h3> Necessary headers </h3>
-    <!-- <p> Headers Headers Headers Headers Headers Headers </p> -->
     <textarea v-model="hdrs" placeholder="Authorization: Bearer ...klmn...&#10;Yet-Another-Header: its_value&#10;..."></textarea>
+    <p class="small text-muted">
+      <strong>Hint:</strong> Можно сюда подставить, например, <code class="small text-muted">cookie: ...</code>, которую можно вытащить из dev-tools браузера после аутентификации в вашем приложении.
+    </p>
 
 
 
-    <br><br><hr>
+    <!-- <br><br><hr>
 
     <h3> Pre-scan
       <button class="btn-check">   check   </button>
     </h3>
-    <!-- <p> Such `curl`(s) gonna be issued: </p> -->
     <pre style="white-space: pre-line; font-family: monospace;">
       curl -i -X GET \
     </pre>
     <pre v-if="hdrs" v-for="s of hdrs.split('\n')">  -H '{{ s }}' \ </pre>
     <pre v-if="burl" >  '{{ burl }}' </pre>
-    <br>
+    <br> -->
 
-    <br><br><hr>
+    <!-- <br><br><hr>
 
     <h3 style="opacity: .5;"> Get ready and
       <button class="btn-fire" disabled>   fire!   </button>
@@ -43,9 +59,20 @@
     <ul>      
       <li v-if="!burl"> URL is not empty </li>
       <li v-if="false"> API spec. loaded is valid </li>      
-      <!-- <li> got your acknowledgement </li> -->
+      <li> [HAX?] got your acknowledgement </li>
       <li> Please put $10 in drive A: </li>
-    </ul>
+    </ul> -->
+
+    <h3> Get ready and
+      <!-- <button class="btn-fire" @click="requestScan" :disabled="!burl ? true : null">   fire!   </button> -->
+      <CButton color="danger" variant="outline"
+               :disabled="!burl ? true : null"
+               @click="requestScan"
+      > FIRE </CButton>
+    </h3>
+    <p class="small text-muted">
+      <em>"Нажимая эту кнопку, <strong>я понимаю,</strong> что негативное тестирование предполагает заведомо невалидную нагрузку на сервисы, <strong>и подтверждаю</strong>, что имею право сделать это с тем, что указано в Base URL."</em>
+    </p>
 
   </main>
 </template>
@@ -59,13 +86,23 @@
       return {
           burl: '',
           hdrs: '',
+          oas: null,
+          link_to: 'app://fd/vuapi',
       };
     },
     methods: {
       handleFileUpload(event){
+        this.oas = event.target.files[0];
+      },
+      requestScan(){
         let formData = new FormData();
-        formData.append('file', event.target.files[0]);
-        axios.post('/up', formData,
+        formData.append('base_url', this.burl);
+        formData.append('headers', this.hdrs);
+        formData.append('link_to', this.link_to);
+        if (this.oas) {
+          formData.append('file', this.oas);
+        }
+        axios.post('/scanreq', formData,
           // { headers: {'Content-Type': 'multipart/form-data'}, }
         );
       },
@@ -75,16 +112,16 @@
 
 <style scoped>
   button {
-    font-size: large;
+/*    font-size: large;*/
     font-weight: bolder;
     font-variant: small-caps;
   }
-  .btn-check {
+/*  .btn-check {
     color: hsl(40, 80%, 50%);
   }
   .btn-fire {
     color: hsl(25, 80%, 50%);
-  }
+  }*/
   input, textarea {
     width: 80%;
     font-size: 14px;
