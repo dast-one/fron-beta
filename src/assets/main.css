@@ -32,7 +32,6 @@ h6 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
   font-weight: normal;
 }
 
@@ -41,6 +40,7 @@ a,
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
+  padding: 3px;
 }*/
 .red {
   text-decoration: none;
@@ -54,7 +54,7 @@ a,
   }*/
   a:hover {
     background-color: hsla(347, 80%, 50%, 0.2);
-    color: hsla(347, 80%, 50%, 1);
+    /*color: hsla(347, 80%, 50%, 1);*/
   }
 }
 

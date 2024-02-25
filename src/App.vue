@@ -20,19 +20,6 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
-/*h1, h2, h3 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}*/
-
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -42,21 +29,6 @@ header {
   display: block;
   margin: 0 auto 2rem;
 }
-
-/*a,
-.red {
-  text-decoration: none;
-  /*color: hsla(160, 100%, 37%, 1);
-  color: hsla(347, 80%, 50%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    /*background-color: hsla(160, 100%, 37%, 0.2);
-    background-color: hsla(347, 80%, 50%, 0.2);
-  }
-}*/
 
 nav {
   width: 100%;
