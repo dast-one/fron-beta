@@ -76,7 +76,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(`/report/`, {params: {
+      const res = await axios.get(`/report`, {params: {
         // report_id: this.$route.params.report_id
         report_id: this.report_id
       }});

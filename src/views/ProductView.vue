@@ -48,7 +48,7 @@ import Mark from '@/components/Mark.vue'
 
       <ol><li v-for="report of rg.dast_reports" :key="report.id">
         <RouterLink :to="{ name: 'report', query: { report_id: report.id }}">
-          {{ report.generated_ts }} </RouterLink>
+          {{ new Date(report.generated_ts).toLocaleString() }} </RouterLink>
         <span v-if="report.alert_uniq_count > 0"> *<sup style="font-size: xx-small;">{{report.alert_uniq_count}}</sup> </span>
         <Mark :n=report.id v-if="APPDBG" />
       </li></ol>
@@ -71,12 +71,12 @@ export default {
   },
   async created() {
     try {
-      const res1 = await axios.get(`/product/`, {params: {
+      const res1 = await axios.get(`/product`, {params: {
         // product_id: this.$route.params.product_id
         product_id: this.product_id
       }});
       this.product = res1.data;
-      const res2 = await axios.get(`/reports/`, {params: {
+      const res2 = await axios.get(`/reports`, {params: {
         // product_id: this.$route.params.product_id
         product_id: this.product_id
       }});

@@ -86,7 +86,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get(`/whoami/`);
+      const res = await axios.get(`/whoami`);
       this.whoami = res.data;
     } catch (error) {
       console.log(error);
