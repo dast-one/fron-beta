@@ -4,31 +4,41 @@
 // import Alert from '@/components/Alert.vue'
 import {
   CButton,
+  CFormCheck,
 } from '@coreui/vue'
 </script>
 
 <template>
   <main>
 
-    <h3> Base URL </h3>
+    <h3> Base URL </h3>
     <input v-model="burl" placeholder="http[s]://..." />
     <p class="small text-muted">
       Пожалуйста, всегда указывайте схему (протокол) и полное имя DNS.
-      <br>
-      Если предполагается API Fuzzing, убедитесь, что Base URL согласуется с путями endpoint'ов в спецификации.
     </p>
 
-    <h3> API Spec (Swagger/OpenAPI) </h3>
-    <CButton color="dark" variant="ghost" size="sm"
-             v-if="!!oas"
-             @click="this.$refs.file.value = null; oas = null;"
-    > clear </CButton>
-    <input ref="file" v-on:change="handleFileUpload($event)" type="file">
     <p class="small text-muted">
-      Если собираемся Fuzz-ить API, загрузите сюда его спецификацию.
+      Что собираемся делать с указанным Base URL:
       <br>
-      Если спецификация API не прикреплена, то считаем, что в Base URL указано web-приложение, которое подлежит DAST-сканированию.
+      <CFormCheck type="radio" inline name="gactiontype" label="Web-app/site DAST"
+        v-model="actiontype" value="webdast"/>
+      <CFormCheck type="radio" inline name="gactiontype" label="API Fuzzing"
+        v-model="actiontype" value="apifuzz"/>
     </p>
+
+    <div v-if="actiontype === 'apifuzz'">
+      <h3> API Spec </h3>
+      <CButton color="dark" variant="ghost" size="sm"
+               v-if="!!oas"
+               @click="this.$refs.file.value = null; oas = null;"
+      > clear </CButton>
+      <input ref="file" v-on:change="handleFileUpload($event)" type="file">
+      <p class="small text-muted">
+        Для API Fuzzing загрузите сюда спецификацию (Swagger/OpenAPI).
+        <br>
+        Убедитесь, что Base URL согласуется с путями endpoint'ов в спецификации.
+      </p>
+    </div>
 
     <h3> Necessary headers </h3>
     <textarea v-model="hdrs" placeholder="Authorization: Bearer ...klmn...&#10;Yet-Another-Header: its_value&#10;..."></textarea>
@@ -84,6 +94,7 @@ import {
     name: "App",
     data() {
       return {
+          actiontype: 'webdast',
           burl: '',
           hdrs: '',
           oas: null,
