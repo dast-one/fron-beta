@@ -2,13 +2,16 @@
 import ProductItem from './ProductItem.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import Mark from './Mark.vue'
+import { CFormInput } from '@coreui/vue'
 </script>
 
 <template>
 
   <h2>Мои продукты</h2>
 
-  <ProductItem v-for="product of products" :key="product.id"
+  <CFormInput v-model="flt" type="text" placeholder="Filter..." />
+
+  <ProductItem v-for="product of filteredProducts" :key="product.id"
     :class="{ inactive: product.status == 'delete' }">
 
     <template #icon>
@@ -57,7 +60,15 @@ export default {
   data() {
     return {
       products: [],
+      flt: "",
     };
+  },
+  computed: {        
+    filteredProducts: function () {
+      return this.products.filter((o) =>
+        JSON.stringify(o).toLowerCase().includes(this.flt.trim().toLowerCase())
+      )
+    },
   },
   async created() {
     try {
