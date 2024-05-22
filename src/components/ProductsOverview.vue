@@ -31,6 +31,12 @@ import { CFormInput } from '@coreui/vue'
     <p v-if="product.contact_name | product.contact_email">
       Контакты: {{ product.contact_name }} {{ product.contact_email }}
     </p>
+
+    <ul v-if="product.urls_seen?.length > 0" style="font-size: 60%">
+      URLs seen:
+      <li v-for="url in product.urls_seen"><code>{{url}}</code></li>
+    </ul>
+
     <i style="font-size: 80%"> {{ new Date(product.last_modified_at).toDateString() }} </i>
 
     <!-- {
