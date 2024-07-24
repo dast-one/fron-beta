@@ -98,7 +98,7 @@ import {
           burl: '',
           hdrs: '',
           oas: null,
-          link_to: 'app://fd/vuapi',
+          link_to: 'app://fd/klmn',
       };
     },
     methods: {
@@ -115,6 +115,11 @@ import {
         }
         axios.post('/scanreq', formData,
           // { headers: {'Content-Type': 'multipart/form-data'}, }
+        ).then(
+          function (res) {
+            console.log(res.status);
+            console.log(res.headers.get('location'));
+          }
         );
       },
     }
