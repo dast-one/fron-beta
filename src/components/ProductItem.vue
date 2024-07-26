@@ -1,3 +1,17 @@
+<script setup>
+// import Alert from '@/components/Alert.vue'
+import {
+  CButton,
+  CFormCheck,
+  CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter,
+  CFormInput, CFormTextarea,
+} from '@coreui/vue'
+
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route.query)
+</script>
+
 <template>
   <div class="item">
     <i>
@@ -9,8 +23,65 @@
       </h3>
       <slot></slot>
     </div>
+    <CButton v-if=route?.query?.product_id color="light" @click="() => { visibleShareForm = true }">Share</CButton>
+    <!-- <i class="bi bi-share"></i> -->
   </div>
+
+  <CModal 
+    :visible="visibleShareForm"
+    @close="() => { visibleShareForm = false }"
+  >
+    <CModalHeader> <CModalTitle>Поделиться доступом к продукту</CModalTitle> </CModalHeader>
+
+    <CModalBody>
+      <CFormInput id="product_id" v-model=route.query.product_id type="text" disabled/>
+      <CFormTextarea
+        id="share_to"
+        label="Введите email(ы):"
+        rows="3"
+        text="По одному в каждой строке"
+      ></CFormTextarea>
+    </CModalBody>
+
+    <CModalFooter>
+      <CButton color="secondary" @click="() => { visibleShareForm = false }">Close</CButton>
+      <CButton color="primary" @click=updateProduct>Add people</CButton>
+    </CModalFooter>
+  </CModal>
 </template>
+
+<script>
+  import axios from "axios"
+  export default {
+    data() {
+      return { 
+        visibleShareForm: false,
+        share_to: "",
+      }
+    },
+    methods: {
+      updateProduct(){
+        const self = this;
+        let formData = new FormData();
+        formData.append('product_id', product_id.value);
+        formData.append('share_to', share_to.value);
+        axios.post('/product', formData,
+        ).then(
+          function (res) {
+            console.log(res.status);
+            // alert("Ok")
+            self.visibleShareForm = false;
+          }
+        ).catch(
+          function (err) {
+            console.log(err);
+            alert(JSON.stringify(err.response.data));
+          }
+        );
+      },
+    }
+  }
+</script>
 
 <style scoped>
 .item {
